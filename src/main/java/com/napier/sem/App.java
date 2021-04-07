@@ -1,30 +1,49 @@
 package com.napier.sem;
+// used to do stuff
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+// This prints reports of Countries, Cities, Capitals and Populations...
+//
+public class App {
+    public static void main(String[] args) {
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoCollection;
-import org.bson.Document;
+        if (args.length < 1)
+        {
+            // Connect to database...
+            Database.connect("localhost:33060");
+        }
+        else
+        {
+            Database.connect(args[0]);
+        }
+/*
+       ArrayList<Country> countries = Country.topCountryCont(5,"Africa");
+       Country.displayCountry(countries);
 
-public class App
-{
-    public static void main(String[] args)
-    {
-        // Connect to MongoDB
-        MongoClient mongoClient = new MongoClient("mongo-dbserver");
-        // Get a database - will create when we use it
-        MongoDatabase database = mongoClient.getDatabase("mydb");
-        // Get a collection from the database
-        MongoCollection<Document> collection = database.getCollection("test");
-        // Create a document to store
-        Document doc = new Document("name", "Kevin Chalmers")
-                .append("class", "Software Engineering Methods")
-                .append("year", "2018/19")
-                .append("result", new Document("CW", 95).append("EX", 85));
-        // Add document to collection
-        collection.insertOne(doc);
 
-        // Check document in collection
-        Document myDoc = collection.find().first();
-        System.out.println(myDoc.toJson());
+        ArrayList<Capital> capitals = Capital.topCapitalRegion(5,"Eastern Asia");
+        Capital.displayCapital(capitals);
+
+
+       ArrayList<City> cities = City.topCityDistrict(5,"Zuid-Holland");
+       City.displayCity(cities);
+       */
+
+
+        System.out.println("Populations in Continents");
+        ArrayList<Population> populations = Population.popContinent();
+        Population.displayPopulation(populations);
+        populations = Population.popRegion();
+        Population.displayPopulation(populations);
+        populations = Population.popCountry();
+        Population.displayPopulation(populations);
+
+        // Disconnect from database
+        Database.disconnect();
+
+
+
     }
+
 }
