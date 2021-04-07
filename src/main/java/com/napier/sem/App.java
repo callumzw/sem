@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 // This prints reports of Countries, Cities, Capitals and Populations...
-// pp
+//
 public class App {
     public static void main(String[] args) {
 
